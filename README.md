@@ -29,6 +29,65 @@ Frequency Encoding — იშვიათი ბარათები და მ
 პირველი — რომელ საათს ხდება fraud ყველაზე ხშირად
 მეორე — კვირის რომელ დღეს არის fraud უფრო მაღალი
 მესამე — gmail, yahoo თუ უცნობი დომენი — რომელზეა fraud მაღალი, count > 100 ფილტრი კი უზრუნველყოფს რო მცირე sample-ები არ გვატყუებდეს
+<img width="2109" height="623" alt="Screenshot 2026-05-02 194832" src="https://github.com/user-attachments/assets/2168fc01-d34b-4360-8303-9e9020c4846f" />
+
+გამოვიყენებ ohe საც და woe საც მარტივებისთვის იქნება ოჰე და დანარჩენისტვის ვოე.<img width="2104" height="113" alt="Screenshot 2026-05-02 202206" src="https://github.com/user-attachments/assets/a87e9b02-ba3e-400b-b10c-9d5fe36142a8" />
+OHE გამოვიყენეთ მცირე უნიკალური მნიშვნელობების მქონე 
+სვეტებზე (card4, card6, DeviceType, M1-M9), რადგან 
+ამ შემთხვევაში სვეტების რაოდენობა მინიმალურად იზრდება.
+
+WOE გამოვიყენეთ მაღალი კარდინალობის სვეტებზე 
+(P_emaildomain, DeviceInfo, card_det), რადგან OHE 
+ამ შემთხვევაში ასობით ახალ სვეტს შექმნიდა და 
+WOE target-თან კავშირს ინახავს რიცხვის სახით.
+
+
+--
+## feature selection
+Correlation → ამცირებს სვეტების რაოდენობას სწრაფად
+IV → ამოიღებს target-თან უსარგებლო სვეტებს
+RFE → ყველაზე ზუსტი მაგრამ ყველაზე ნელი, ამიტომ ბოლოს — უკვე ნაკლებ სვეტებზე გაეშვება
+ამ სამივე მეთდს გამოვიყენებ,
+
+
+<img width="1471" height="1017" alt="Screenshot 2026-05-02 204618" src="https://github.com/user-attachments/assets/177bb4f9-5c5d-4664-a134-d2676cb39608" />
+კი! მაგრამ ეს heatmap მხოლოდ პირველ 20 სვეტს აჩვენებს და დიაგონალი ყოველთვის 1.0-ია (სვეტი თავის თავთან).
+გრაფიკიდან ვხედავთ:
+
+D1, D3, D4, D5, D10 — ერთმანეთთან კორელირებულია (ნარინჯისფერი)
+C2, C9, C13 — ოდნავ კორელირებულია
+დანარჩენები კარგად გამოიყურება
+
+უკვე გადავედი IV-ს დათვლაზე და თრეშჰოლდია 0,02 მაგაზე დაბალი თუ აქ რომელიმეს ეგ დაიდროპება.
+<img width="291" height="81" alt="Screenshot 2026-05-02 211401" src="https://github.com/user-attachments/assets/16bc5e31-20e6-4ab2-a4ad-cc2686ea70f1" />
+ყვეკაზე მეტად ინფორმაციული აღმოჩნდა ჩემ მიერ დამატებული cad_det <img width="1946" height="902" alt="Screenshot 2026-05-02 211618" src="https://github.com/user-attachments/assets/b36398b1-362e-4937-ba51-70d73bffd9a8" />
+
+და ეხა დროა RFE, მაგრამ ჩვენი მონაცემებითვის ზეეედემტად ნელი იქნება, ამიტომ გამოვიყენოთ L1 რეგულარიზაცია Logistic Regression სწავლობისას თითოეულ სვეტს კოეფიციენტს ანიჭებს — რამდენად მნიშვნელოვანია ეს სვეტი პროგნოზისთვის. Feature Selection-ის მესამე ეტაპზე გამოვიყენეთ 
+L1 Regularization — Logistic Regression-ისთვის 
+სპეციალურად შექმნილი მეთოდი. მოდელმა თავად 
+განსაზღვრა რომელი სვეტები იყო უსარგებლო და 
+მათი კოეფიციენტი ნულზე დაიყვანა. შედეგად 
+149 სვეტიდან შეირჩა მხოლოდ ყველაზე 
+ინფორმაციული სვეტები. C რაც უფრო პატრა მით უფრო მეტია და დიდი რეგულარიზაცია C=1/ლამბდა
+რაც უფრო პატრა C მით უფრო ცოტა სვეტს დატოვებს.
+
+--
+## training
+Training ეტაპზე გამოვიყენეთ Logistic Regression 
+L1 Regularization-ით (C=0.01). მოდელი შევაფასეთ 
+ROC-AUC მეტრიკით რადგან dataset imbalanced-ია 
+(fraud შემთხვევები მხოლოდ 3.5%-ია). 
+Confusion Matrix-ით დავინახეთ რამდენი fraud 
+სწორად/არასწორად განისაზღვრა.
+<img width="1127" height="970" alt="Screenshot 2026-05-02 224931" src="https://github.com/user-attachments/assets/9eeb9ab4-f1a6-491d-80e8-8de9e9c7b046" />
+<img width="1566" height="1015" alt="Screenshot 2026-05-02 224916" src="https://github.com/user-attachments/assets/44050bc2-8be9-46f4-8c6d-9ee5d730f0fa" />
+
+Logistic Regression-მა მიაღწია ROC-AUC = 0.8822. 
+მაგრამ Confusion Matrix-იდან ჩანს რომ 2,947 
+Fraud შემთხვევა ვერ დაიჭირა — ეს imbalanced 
+dataset-ის პრობლემაა რომელსაც უფრო რთული 
+მოდელები (XGBoost, LightGBM) უკეთ გაუმკლავდება.
+
 
 
 
