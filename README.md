@@ -58,7 +58,7 @@ L1 Regularization-ით სადაც C=0.01, მოდელი შევა
 <img width="1127" height="970" alt="Screenshot 2026-05-02 224931" src="https://github.com/user-attachments/assets/9eeb9ab4-f1a6-491d-80e8-8de9e9c7b046" />
 <img width="1566" height="1015" alt="Screenshot 2026-05-02 224916" src="https://github.com/user-attachments/assets/44050bc2-8be9-46f4-8c6d-9ee5d730f0fa" />
 როგორც ვხეედავთ, Train და Validation ROC-AUC შორის სხვაობა მხოლოდ 0.0126 -ია, არ გვაქვს არც overfitting და არც underfitting. რეალურად roc_auc მეტრიკა რაც უფრო დიდი მით ულეთი მაგრამ მთად 1 არ უნდა იყსო რადგან ეგ უკვე overfitting არის. 
-<img width="501" height="134" alt="Screenshot 2026-05-03 152236" src="https://github.com/user-attachments/assets/9ca85894-2a06-491e-ad7a-45261c3f82e2" />
+<img width="484" height="199" alt="Screenshot 2026-05-03 204844" src="https://github.com/user-attachments/assets/d661d1dd-786a-4f5e-8e64-d1b6e684389f" />
 ჩვენმა Logistic Regression-მა მიაღწია ROC-AUC = 0.8823, მაგრამ Confusion Matrix-იდან ჩანს რომ 2,947  Fraud შემთხვევა ვერ დაიჭირა — ეს imbalanced dataset-ის პრობლემაა რომელსაც უფრო რთული მოდელები  უკეთ გაუმკლავდება.
 
 
