@@ -97,6 +97,18 @@ L1 Regularization-ით სადაც C=0.01, მოდელი შევა
 ასევე აქაც ყველა მოდელი შევაფასე  roc_auc_train და roc_auc_val და აი ასეთ შედგი დადო
 <img width="450" height="120" alt="Screenshot 2026-05-04 183431" src="https://github.com/user-attachments/assets/623a9c9e-0117-4d3d-a23b-fe235ce2d8ec" />
 
+--
+
+## Random Forest
+აქაც ყველაფერი იგივე გავაკეთე უბრალოდ, ანუ ის დსაკლაირება აღარ მინდა მაღგამ თვითონ ხეში დავუწერო რომ არის დატა იმბალნსად და დავუწერ რო class_weight='balanced' რას აკეთებს:
+მოდელს ეუბნება რომ Fraud შემთხვევა უფრო მნიშვნელოვანია — ანუ Fraud-ის გამოტოვება უფრო "ძვირი" ჯდება!  <img width="1154" height="958" alt="Screenshot 2026-05-05 014956" src="https://github.com/user-attachments/assets/b1d01818-f43b-410c-9fa5-2c591e78ecd3" />
+
+გვინდა რო მარცხენა ზედა კუთხე და მარჯვენა ქვედა კუთხე იყოს რაც შეიძ₾ება დიიდბები რადგან ეგ სწორად შეფასებული პასუხებია. და დალშე კიდე ცოტები და ანუ აი იმ class_weight='balanced' მივიღეთ, რომ რეალურად ასე კარგად იჭერს Fraud კარგად იჭერს — 3,259.
+ეს მოხდა როცა მოვუხსენი  class_weight='balanced', ეს ნაწილი და ვხედავთ რამდენად ბერვი თაღლითობა გამაზა.<img width="1169" height="955" alt="Screenshot 2026-05-05 015401" src="https://github.com/user-attachments/assets/9d856e01-f6eb-4036-b107-e86d84e1a374" />
+ყველაზე კარგი შედეგი დამიდჯდა ეს <img width="446" height="119" alt="Screenshot 2026-05-05 021320" src="https://github.com/user-attachments/assets/adba961c-77f2-4de3-b4da-996ca462812c" />
+
+
+
 
 
 
