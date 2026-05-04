@@ -87,9 +87,11 @@ L1 Regularization-ით სადაც C=0.01, მოდელი შევა
 
 ### Training
 აქ უკვე ჩვენ უნდა შევცვალოთ სიღრმეები და ჰაი ჰუი.
-<img width="1956" height="990" alt="Screenshot 2026-05-03 203455" src="https://github.com/user-attachments/assets/cc864e99-b739-461e-b227-f4bb4fbadd33" />
+
 ჩანს ისინი რამდენად მნიშვნელვოვანია სვეტები რეალურად IV რო არ გვექნა ესც იზამდა ძაანაც კარგად.
-<img width="1156" height="892" alt="Screenshot 2026-05-03 203605" src="https://github.com/user-attachments/assets/6c501db6-fc71-44d6-8e53-f877488f98b5" />
+<img width="1155" height="861" alt="Screenshot 2026-05-04 155327" src="https://github.com/user-attachments/assets/72b767a4-f68a-460b-8748-0bf5542b9873" />
+<img width="1468" height="994" alt="Screenshot 2026-05-04 155347" src="https://github.com/user-attachments/assets/c05a7874-ae00-4662-9140-b48a00f2882c" />
+
 აქედან ჩანსო რომ ხეებმა უკეთ დაიჭირეს Freaud-ები. 
 
 
