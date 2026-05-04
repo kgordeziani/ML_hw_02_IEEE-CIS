@@ -93,6 +93,10 @@ L1 Regularization-ით სადაც C=0.01, მოდელი შევა
 <img width="1468" height="994" alt="Screenshot 2026-05-04 155347" src="https://github.com/user-attachments/assets/c05a7874-ae00-4662-9140-b48a00f2882c" />
 
 აქედან ჩანსო რომ ხეებმა უკეთ დაიჭირეს Freaud-ები. 
+აქაც ყველა კომბინაცია ვნახე max_depth, min_samples_split, min_samples_leaf.-> amis bevri ro vcade.
+ასევე აქაც ყველა მოდელი შევაფასე  roc_auc_train და roc_auc_val და აი ასეთ შედგი დადო
+<img width="450" height="120" alt="Screenshot 2026-05-04 183431" src="https://github.com/user-attachments/assets/623a9c9e-0117-4d3d-a23b-fe235ce2d8ec" />
+
 
 
 
