@@ -64,7 +64,7 @@ house-prices/
 L1 Regularization-ით სადაც C=0.01, მოდელი შევაფასეთ ROC-AUC მეტრიკით. Confusion Matrix-ით დავინახეთ რამდენი fraud განისაზღვრა სწორად/არასწორად.  
 <img width="1148" height="925" alt="Screenshot 2026-05-03 222018" src="https://github.com/user-attachments/assets/87f8c278-b3e5-43fa-95c3-934524dbf793" />
 <img width="1567" height="1005" alt="Screenshot 2026-05-03 222009" src="https://github.com/user-attachments/assets/091dd185-113c-4bfd-9a22-629be05c48db" />
-როგორც ვხეედავთ, Train და Validation ROC-AUC შორის სხვაობა მხოლოდ 0.0126 -ია, არ გვაქვს არც overfitting და არც underfitting. რეალურად roc_auc მეტრიკა რაც უფრო დიდი მით ულეთი მაგრამ მთად 1 არ უნდა იყსო რადგან ეგ უკვე overfitting არის. 
+როგორც ვხეედავთ, Train და Validation ROC-AUC შორის სხვაობა მხოლოდ 0.0126 -ია, არ გვაქვს არც overfitting და არც underfitting. რეალურად roc_auc მეტრიკა რაც უფრო დიდი მით უკეთესი მაგრამ მთლად 1 არ უნდა იყსო რადგან ეგ უკვე overfitting არის. 
 <img width="484" height="199" alt="Screenshot 2026-05-03 204844" src="https://github.com/user-attachments/assets/d661d1dd-786a-4f5e-8e64-d1b6e684389f" />
 ჩვენმა Logistic Regression-მა მიაღწია ROC-AUC = 0.8823, მაგრამ Confusion Matrix-იდან ჩანს რომ 2,947  Fraud შემთხვევა ვერ დაიჭირა — ეს imbalanced dataset-ის პრობლემაა რომელსაც უფრო რთული მოდელები  უკეთ გაუმკლავდება.
 
@@ -77,31 +77,30 @@ L1 Regularization-ით სადაც C=0.01, მოდელი შევა
 
 ## Decision Tree
 ### მონაცემთა დამუშავება (Cleaning)
-იგივე მიდგომა გამოვიყენე რაც Logistic Regresion-ში. დამატებით ასევე ვცადე იმ სვეტების მოშორება, რომელიც თითქმის იდენტურ ინფორმაციას შეიცავდა. მისი, ეგრედ წოდებული variance threshold ავიღე 0.01. წაიშლება ისეთი სვეტები რომელთა ვარიაციაც ამ threshold-ზე ნაკლებია. 
-<img width="443" height="38" alt="image" src="https://github.com/user-attachments/assets/71c5c3c7-fcbd-47f5-a2cf-1e6e59362b8a" /> ასე დაიდროპა 24 სვეტი.
+იგივე მიდგომა გამოვიყენე რაც Logistic Regresion-ში. დამატებით ასევე ვცადე იმ სვეტების მოშორება, რომელიც თითქმის იდენტურ ინფორმაციას შეიცავდა. მისი, ეგრედ წოდებული variance threshold ავიღე 0.01. წაიშლება ისეთი სვეტები რომელთა ვარიაციაც ამ threshold-ზე ნაკლებია. ასე დაიდროპა 24 სვეტი.
+<img width="443" height="38" alt="image" src="https://github.com/user-attachments/assets/71c5c3c7-fcbd-47f5-a2cf-1e6e59362b8a" />
 
 ---
 
 ### Feature Engineering
-* აქაც იგივეს ვიზამ იმავე სვეტებს დავამატებ და ასევე ohe და woe იმავე ნაირად გამოვიყენებ.
+იგივე სვეტები დავამატე რაც  Logistic Regression-ში, კერძოდ, TransactionAmt_log, Transaction_hour,Transaction_day, card_det, მათი სიხშირეებიც. კატეგორიული ცვლადების რიცხვითში გადაყვანის მეთოდიც არ შემიცვლია და ნაწილისთვის "მარტივი" კატეგორიული ცვლადბეისთვის ვიყნებ OHE, ხოლო რთულებისთვის WOE.
 
 ---
 
 ### Feature Selection
-აქაც იგივეს ვაკეთებ კორელაციის ფილსტრ და iv-ს არ ვეხები, თუმცა  L1 Regularization-ს აქ ვერ გამოვიყენებთ, ამიტომ გამოვიყენებ Feature Importance. Decision Tree სწავლისას ყოველი სვეტისთვის ითვლის რამდენად კარგ split-ს გვაძლევს ეს სვეტი. ანუ ისევე როგორც L1 რეგრესიაში თავისით განსაზღვრავდა რომელი სვეტები იყო საუკეთესო ეგრე მუშაობს ხეებში Feature Importance. ანუ რეალურად მოდელი თვითონ ისწავლის მნისვნელოვან სვეტებს ამიტომ ჩვენ ზემდეტად აღარ გვჭირდება. აქ რეალურად IV რო მოვაშორე არაფერი არ შეცვლილა ამიტომ არც არის საჭირო რადგნა ახეები თითონაც პოულობენ feature importamce-ს.
+გამოვიყენე correlation ფილტრი, threshold ავიღე 0.85. თავიდან IV ფილტრიც ვცადე, თუმცა არ აღმოჩნდა საჭირო, რადგან მოდელი თვითონ ითვლის Feature Importance-ს. Decision Tree სწავლისას ყოველი სვეტისთვის ითვლის რამდენად კარგ split-ს გვაძლევს კონკრეტული სვეტი. შესაბამისად მოდელი თვითონ განსაზღვრას რომელი სვეტები არის ყველაზე მნიშვნელოვანი და ჩვენი ზედმეტი ჩარევა არ არის საჭირო. 
 
 ---
 
 ### Training
-აქ უკვე ჩვენ უნდა შევცვალოთ სიღრმეები და ჰაი ჰუი.
-
+გავტესტე სხვადასხვა პარამეტრების კომბინაციები.
 ჩანს ისინი რამდენად მნიშვნელვოვანია სვეტები რეალურად IV რო არ გვექნა ესც იზამდა ძაანაც კარგად.
 <img width="1155" height="861" alt="Screenshot 2026-05-04 155327" src="https://github.com/user-attachments/assets/72b767a4-f68a-460b-8748-0bf5542b9873" />
 <img width="1468" height="994" alt="Screenshot 2026-05-04 155347" src="https://github.com/user-attachments/assets/c05a7874-ae00-4662-9140-b48a00f2882c" />
 
 აქედან ჩანსო რომ ხეებმა უკეთ დაიჭირეს Freaud-ები. 
 აქაც ყველა კომბინაცია ვნახე max_depth, min_samples_split, min_samples_leaf.-> amis bevri ro vcade.
-ასევე აქაც ყველა მოდელი შევაფასე  roc_auc_train და roc_auc_val და აი ასეთ შედგი დადო
+ყველა მოდელს ვაფასებდი  roc_auc_train და roc_auc_val მეტრიკებით და თან ვაკონტროლებდი overfitting/underfitting-ში არ გადასულიყო მოდელი.  
 <img width="450" height="120" alt="Screenshot 2026-05-04 183431" src="https://github.com/user-attachments/assets/623a9c9e-0117-4d3d-a23b-fe235ce2d8ec" />
 
 ---
