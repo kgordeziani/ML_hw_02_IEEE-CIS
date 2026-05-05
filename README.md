@@ -16,7 +16,7 @@ fraud-detection/
     model_experiment_randomforest.ipynb,
     model_experiment_adaboost.ipynb,
     model_experiment_xgboost.ipynb
-├── model_inference.ipynb                            # საუკეთესო მოდელის ჩამოტვირთვა, submission 
+├── model_inference_xgb.ipynb                        # საუკეთესო მოდელის ჩამოტვირთვა, submission 
 ├── README.md                                        # პროექტის აღწერა
 ```
 ---
