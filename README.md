@@ -105,8 +105,7 @@ L1 Regularization-ით სადაც C=0.01, მოდელი შევა
 
 გვინდა რო მარცხენა ზედა კუთხე და მარჯვენა ქვედა კუთხე იყოს რაც შეიძ₾ება დიიდბები რადგან ეგ სწორად შეფასებული პასუხებია. და დალშე კიდე ცოტები და ანუ აი იმ class_weight='balanced' მივიღეთ, რომ რეალურად ასე კარგად იჭერს Fraud კარგად იჭერს — 3,259.
 ეს მოხდა როცა მოვუხსენი  class_weight='balanced', ეს ნაწილი და ვხედავთ რამდენად ბერვი თაღლითობა გამაზა.<img width="1169" height="955" alt="Screenshot 2026-05-05 015401" src="https://github.com/user-attachments/assets/9d856e01-f6eb-4036-b107-e86d84e1a374" />
-ყველაზე კარგი შედეგი დამიდჯდა ეს <img width="446" height="119" alt="Screenshot 2026-05-05 021320" src="https://github.com/user-attachments/assets/adba961c-77f2-4de3-b4da-996ca462812c" />
-
+ყველაზე კარგი შედეგი დამიდჯდა ეს 
 
 
 
