@@ -93,15 +93,19 @@ L1 Regularization-ით სადაც C=0.01, მოდელი შევა
 ---
 
 ### Training
-გავტესტე სხვადასხვა პარამეტრების კომბინაციები.
-ჩანს ისინი რამდენად მნიშვნელვოვანია სვეტები რეალურად IV რო არ გვექნა ესც იზამდა ძაანაც კარგად.
-<img width="1155" height="861" alt="Screenshot 2026-05-04 155327" src="https://github.com/user-attachments/assets/72b767a4-f68a-460b-8748-0bf5542b9873" />
-<img width="1468" height="994" alt="Screenshot 2026-05-04 155347" src="https://github.com/user-attachments/assets/c05a7874-ae00-4662-9140-b48a00f2882c" />
+გავტესტე სხვადასხვა პარამეტრების სხვადასხვა კომბინაციები.
+| პარამეტრი | მნიშვნელობა | 
+|-----------|-------------|
+| `max_depth` | 3, 5, 7, 8, 9, 10 | 
+| `min_samples_split` | 10, 15, 20, 30, 50, 60, 80 |
+| `min_samples_leaf` | 10, 15, 20, 25, 40, 60 | 
 
-აქედან ჩანსო რომ ხეებმა უკეთ დაიჭირეს Freaud-ები. 
-აქაც ყველა კომბინაცია ვნახე max_depth, min_samples_split, min_samples_leaf.-> amis bevri ro vcade.
-ყველა მოდელს ვაფასებდი  roc_auc_train და roc_auc_val მეტრიკებით და თან ვაკონტროლებდი overfitting/underfitting-ში არ გადასულიყო მოდელი.  
-<img width="450" height="120" alt="Screenshot 2026-05-04 183431" src="https://github.com/user-attachments/assets/623a9c9e-0117-4d3d-a23b-fe235ce2d8ec" />
+საუკეთესო კომბინაციამ (max_depth=10, min_samples_split=80, min_samples_leaf=60) მოგვცა ასეთი შედეგი <img width="450" height="120" alt="Screenshot 2026-05-04 183431" src="https://github.com/user-attachments/assets/623a9c9e-0117-4d3d-a23b-fe235ce2d8ec" />
+
+<img width="1155" height="861" alt="Screenshot 2026-05-04 155327" src="https://github.com/user-attachments/assets/72b767a4-f68a-460b-8748-0bf5542b9873" />
+
+მატრიციდან კარგად ვხედავთ, რომ ხეებმა უკეთ შეძლეს თაღლითობების დაჭერა ვიდრე Logistic Regression-მა. 
+<img width="1468" height="994" alt="Screenshot 2026-05-04 155347" src="https://github.com/user-attachments/assets/c05a7874-ae00-4662-9140-b48a00f2882c" />
 
 ---
 
