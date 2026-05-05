@@ -131,31 +131,26 @@ L1 Regularization-ით სადაც C=0.01, მოდელი შევა
 
 ## AdaBoost
 ამ მოდელშიც გავაკეთე იგივე prepocessing რაც Random Forest-ში. წინა მოდელებთან შედარებით ამ მოდელს აქვს უპირატესობა, რომ უშუალოდ წინა მოდელების დაშვებული შეცდომების გამოსწორებას ცდილობს. ეს მეთოდი კი ძალიან გამოსადეგარი დაუბალანსებელი დატის დროს, იმიტორ ავტომატურად გაზრდის იმ შემთხვევბის წონას, რომლებიც მოდელმა არასწორად დაიჭირა.
-<img width="420" height="71" alt="image" src="https://github.com/user-attachments/assets/d7084547-0033-4f3b-bbdc-bcdbdd03d1d6" />
+<img width="1147" height="971" alt="image" src="https://github.com/user-attachments/assets/b9aeb2ce-a1a2-44f7-8ff6-bdb00cb9fd65" />
 როგორც ვხედავთ, მაინც დიდია fn ამიტომ ხელით დავამატე sample_weight, რომ გამეუმჯობესებინა შედეგი.
-<img width="490" height="125" alt="image" src="https://github.com/user-attachments/assets/cbc6f5f5-8d64-4944-985d-1eb8c8c531f1" />
+<img width="1159" height="925" alt="image" src="https://github.com/user-attachments/assets/ba087c82-c226-4fbb-9620-a6a95c6cc685" />
 ამ მოდელშ გვაქვს პარამეტრი - learning_rate რომელიც აკონტროლებს რამდენად დიდი წვილი, 'სანდოობა' უნდა ჰქონდეს თითოეულ მოდელს საბოლოო შედეგში.  
-მარტივი ახსნა:
-AdaBoost თანმიმდევრულად ამატებს სუსტ მოდელებს — თითოეული ცდილობს წინა მოდელის შეცდომები გაასწოროს. Learning Rate კი აკონტროლებს რამდენად ენდობა თითოეულ ახალ მოდელს.
-learning_rate=0.1 ავირჩიეთ რადგან დაბალი 
-learning_rate უფრო სტაბილურ სწავლას იძლევა 
-და Overfitting-ის რისკს ამცირებს. შესაბამისად 
-n_estimators=100 გამოვიყენეთ რომ მოდელს 
-საკმარისი რაოდენობის სუსტი მოდელი ჰქონდეს.
-Random Forest → class_weight='balanced' ხელით უნდა დავამატოთ
-AdaBoost → ავტომატურად ზრდის გამოტოვებული შემთხვევების წონას 
-AdaBoost-ი განსაკუთრებით კარგად უმკლავდება 
-დაუბალანსებელ dataset-ს — თითოეულ იტერაციაში 
-გამოტოვებულ Fraud შემთხვევებს მეტ წონას 
-ანიჭებს და მომდევნო მოდელი მათზე უფრო 
-მეტად ფოკუსირდება.
-learning_rate=0.01 ძალიან პატარაა — მოდელი ძალიან ნელა ისწავლის და n_estimators=50 არ კმარა იმისთვის რომ კარგად ისწავლოს
+სხვადასხვა კომბინაციები ვცადე პარამეტრების.
 
+| პარამეტრი | მნიშვნელობა | 
+|-----------|-------------|
+| `n_estimators` | 50, 100, 150, 200, 300 | 
+| `learning_rate` | 0.01, 0.1, 0.5, 0.6,  1.0 |
 
+საბოლოოგ ავიღე კომბინაცია n_estimators=300 და learning_rate=0.6 
+
+<img width="420" height="71" alt="image" src="https://github.com/user-attachments/assets/d7084547-0033-4f3b-bbdc-bcdbdd03d1d6" />
+
+<img width="490" height="125" alt="image" src="https://github.com/user-attachments/assets/cbc6f5f5-8d64-4944-985d-1eb8c8c531f1" />
 სანამ sample_weight ებს დვამატებდი კი კაი იყო 
-მაგრამ დაუბალანსებელი დატის გამო მაინც ბევრ იმას თარ₾იტობას ვერ იჭერდა <img width="1147" height="971" alt="image" src="https://github.com/user-attachments/assets/b9aeb2ce-a1a2-44f7-8ff6-bdb00cb9fd65" />
+მაგრამ დაუბალანსებელი დატის გამო მაინც ბევრ იმას თარ₾იტობას ვერ იჭერდა 
 
-საბოლოოდ საკმადო კარგად დაიჭირა და დააბალანსა <img width="1159" height="925" alt="image" src="https://github.com/user-attachments/assets/ba087c82-c226-4fbb-9620-a6a95c6cc685" />
+საბოლოოდ საკმადო კარგად დაიჭირა და დააბალანსა 
 ესაა საუკეთესო შედეგი ამისთვის <img width="871" height="415" alt="image" src="https://github.com/user-attachments/assets/968baa04-8353-434f-a288-0f42a9831429" />
 
 ## XGBoost
