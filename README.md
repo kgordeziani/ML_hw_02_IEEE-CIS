@@ -1,5 +1,5 @@
 # ML_hw_02_IEEE-CIS
---
+---
 ## კონკურსის მიმოხილვა
 IEEE-CIS Fraud Detection კონკურსის მიზანია საბანკო ტრანზაქციებზე თაღლითობის პროგრონზირება სხვადასხვა ფიჩერებზე, მახასიათებლებზე დაყრდნობით, კერძოდ, მოწყობილობის ტიპის, ბარათის ინფორმაციის, თანხის და სხვა. მონაცემები შედეგბა ორი ნაწილისგან: Transaction ცხრილი და Identity ცხრილი. პირველ ცხრილშ წერია ტრანზაქციის დეტალები, ხოლო მეორეში მომხმარებლის მოწყობილობის ინფორმაცია.  ამ ამოცანას ვაფასებთ area under the ROC curve - მეტრიკის გამოყენებით. 
 
@@ -163,7 +163,20 @@ L1 Regularization-ით სადაც C=0.01, მოდელი შევა
 
 საუკეთსო შედგი მივიღე კომბინაციებით colsample_bytree=0.8, max_depth=6, null_threshold=0.9, subsample=0.8, learning_rate=0.1, scale_pos_weight=30, n_estimators=250
 <img width="847" height="399" alt="image" src="https://github.com/user-attachments/assets/7b7aacd8-57bd-4350-a1a7-3b9872e2064e" />
-<img width="639" height="61" alt="image" src="https://github.com/user-attachments/assets/fb794c6a-70ef-4a3b-90f8-0ad315d6ca58" />. ბერვი პარამეტრი ვცვალე.
+ყველაზე კარგად ამ მოდელმა დაიჭირა თაღლითობები
+<img width="639" height="61" alt="image" src="https://github.com/user-attachments/assets/fb794c6a-70ef-4a3b-90f8-0ad315d6ca58" />
+
+---
+## საუკეთესო მოდელი
+საბოლოოდ საუკეთესო მოდელი შეირჩა ამ ხუთი ძირითადი მოდელის val_rmsle შედარებით:
+შერჩევის კრიტერიუმი: ყველაზე მაღალი  roc_auc_val სადაც roc_auc_train ~ roc_auc_val  — ანუ როცა მოდელმა შეისწავლა პატერნი და არა დაიზეპირა. ჩემ შემთვევაში საუკეთესო გამოვიდა **XGBoost**.
+
+### Kaggle Score
+
+---
+## MLflow ექსპერიმენტები DagsHub-ზე
+ყველა run დარეგისტრირებულია: [Dagshub MLflow](https://dagshub.com/kgord23/ML_hw_01_House-Prices)
+თითოეულ run-ში დავლოგე: პარამეტრები, მეტრიკები, არტიფაქტები
 
 
 
